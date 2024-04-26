@@ -1,12 +1,15 @@
 import React, { useState } from "react";
 
-export const FormSubmit = () => {
-  const [video, setVideo] = useState({ like: "2", views: "28k" });
-  const handleSubmit = () => {};
+export const FormSubmit = ({ dispatch }) => {
+  const [video, setVideo] = useState();
+  const handleSubmit = () => {
+    // AddVideo(video);
+    dispatch({ type: "ADD", payload: video });
+  };
   const handleChange = (e) => {
-    console.log("e:", e.target.value);
     setVideo({
       ...video,
+      // this method to get the different  property of video object.,other case we difined the multiple state
       [e.target.name]: e.target.value,
     });
   };
@@ -27,7 +30,7 @@ export const FormSubmit = () => {
           onChange={handleChange}
         />
       </div>
-      <button>submit button</button>
+      <button onClick={handleSubmit}>submit button</button>
     </>
   );
 };
